@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface VehicleRepositoy extends MongoRepository<Vehicle, String> {
+public interface VehicleRepository extends MongoRepository<Vehicle, String> {
     List<Vehicle> findVehicleByModeloContainingIgnoreCase(String modelo);
 
     Vehicle findVehicleByPlacaIgnoreCase(String placa);

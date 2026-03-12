@@ -27,4 +27,13 @@ public class Vehicle {
     private Integer anoFabricacao;
 
     private Integer quilometragem;
+
+    public Vehicle (Vehicle vehicle){
+        this.id = vehicle.getId();
+        this.placa = vehicle.getPlaca();
+        this.modelo = vehicle.getModelo();
+        this.anoModelo = vehicle.getAnoModelo();
+        this.anoFabricacao = vehicle.getAnoFabricacao();
+        this.quilometragem = vehicle.getQuilometragem();
+    }
 }
