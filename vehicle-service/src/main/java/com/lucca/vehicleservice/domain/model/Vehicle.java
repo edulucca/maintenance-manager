@@ -1,4 +1,4 @@
-package com.lucca.vehicleservice.model;
+package com.lucca.vehicleservice.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -28,12 +26,4 @@ public class Vehicle {
 
     private Integer quilometragem;
 
-    public Vehicle (Vehicle vehicle){
-        this.id = vehicle.getId();
-        this.placa = vehicle.getPlaca();
-        this.modelo = vehicle.getModelo();
-        this.anoModelo = vehicle.getAnoModelo();
-        this.anoFabricacao = vehicle.getAnoFabricacao();
-        this.quilometragem = vehicle.getQuilometragem();
-    }
 }

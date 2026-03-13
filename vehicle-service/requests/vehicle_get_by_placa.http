@@ -1,0 +1,5 @@
+### GET request to return vehicle by placa
+@placa = ABC1234
+GET http://localhost:8081/api/vehicles/{{placa}}
+
+###

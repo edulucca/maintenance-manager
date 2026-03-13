@@ -1,12 +1,9 @@
-package com.lucca.vehicleservice.repository;
+package com.lucca.vehicleservice.domain.repository;
 
-import com.lucca.vehicleservice.model.Vehicle;
+import com.lucca.vehicleservice.domain.model.Vehicle;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.List;
-
 public interface VehicleRepository extends MongoRepository<Vehicle, String> {
-    List<Vehicle> findVehicleByModeloContainingIgnoreCase(String modelo);
 
     Vehicle findVehicleByPlacaIgnoreCase(String placa);
 

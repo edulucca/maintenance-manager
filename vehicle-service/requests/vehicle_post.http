@@ -1,0 +1,11 @@
+### Send POST request with json body
+POST http://localhost:8081/api/vehicles
+Content-Type: application/json
+
+{
+  "placa": "ABC1234",
+  "modelo": "Ford Fusion 2.5",
+  "anoModelo": 2014,
+  "anoFabricacao": 2013,
+  "quilometragem": 154000
+}

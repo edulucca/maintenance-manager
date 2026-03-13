@@ -2,8 +2,9 @@ package com.lucca.vehicleservice.service;
 
 import com.lucca.vehicleservice.dto.VehicleRequestDTO;
 import com.lucca.vehicleservice.dto.VehicleResponseDTO;
-import com.lucca.vehicleservice.model.Vehicle;
-import com.lucca.vehicleservice.repository.VehicleRepository;
+import com.lucca.vehicleservice.domain.model.Vehicle;
+import com.lucca.vehicleservice.domain.repository.VehicleRepository;
+import com.lucca.vehicleservice.mapper.VehicleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,44 +14,46 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class VehicleService {
-    private final VehicleRepository vehicleRepository;
+
+    private final VehicleRepository repository;
+    private final VehicleMapper mapper;
 
     public VehicleResponseDTO inserir(VehicleRequestDTO vehicleRequest){
-        if(vehicleRepository.existsVehicleByPlaca(vehicleRequest.placa())){
+        if(repository.existsVehicleByPlaca(vehicleRequest.placa())){
             throw new IllegalArgumentException("Vehicle already inserted");
         }
 
-        return VehicleResponseDTO.toResponseDTO(vehicleRepository.save(vehicleRequest.toVehicleByDTO()));
+        return mapper.toResponse(repository.save(mapper.toEntity(vehicleRequest)));
     }
 
     public VehicleResponseDTO alterar(String placa, VehicleRequestDTO vehicleRequest){
-        Vehicle vehicleCurrent = vehicleRepository.findVehicleByPlacaIgnoreCase(placa);
+        Vehicle vehicleTarget = repository.findVehicleByPlacaIgnoreCase(placa);
 
-        if(vehicleCurrent == null){
+        if(vehicleTarget == null){
             throw new IllegalArgumentException("no vehicle found");
         }
 
-        Vehicle vehicleNew = new Vehicle(vehicleRequest.toVehicleByDTO());
+        mapper.updateEntityFromDto(vehicleRequest, vehicleTarget);
 
-        return VehicleResponseDTO.toResponseDTO(vehicleRepository.save(vehicleNew));
+        return mapper.toResponse(repository.save(vehicleTarget));
     }
 
     public List<VehicleResponseDTO> listarTodos(){
-        return vehicleRepository.findAll().stream().map(VehicleResponseDTO::toResponseDTO).collect(Collectors.toList());
+        return repository.findAll().stream().map(mapper::toResponse).collect(Collectors.toList());
     }
 
     public VehicleResponseDTO localizarPorPlaca(String placa){
-        return VehicleResponseDTO.toResponseDTO(vehicleRepository.findVehicleByPlacaIgnoreCase(placa));
+        return mapper.toResponse(repository.findVehicleByPlacaIgnoreCase(placa));
     }
 
     public void deletar(String placa){
-        Vehicle vehicle = vehicleRepository.findVehicleByPlacaIgnoreCase(placa);
+        Vehicle vehicle = repository.findVehicleByPlacaIgnoreCase(placa);
 
         if(vehicle == null){
             throw new IllegalArgumentException("vehicle not found");
         }
 
-        vehicleRepository.deleteById(vehicle.getId());
+        repository.deleteById(vehicle.getId());
     }
 
 }

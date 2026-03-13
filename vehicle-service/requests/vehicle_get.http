@@ -1,0 +1,4 @@
+### GET request to return vehicles
+GET http://localhost:8081/api/vehicles
+
+###

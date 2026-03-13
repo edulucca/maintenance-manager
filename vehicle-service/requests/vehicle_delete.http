@@ -1,0 +1,5 @@
+### DELETE request to delete vehicle
+@placa =ABC1234
+DELETE http://localhost:8081/api/vehicles/{{placa}}
+
+###
