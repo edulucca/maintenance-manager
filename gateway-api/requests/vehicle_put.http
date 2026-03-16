@@ -1,0 +1,14 @@
+### GATEWAY | PUT request to update vehicle
+@placa =ABC1234
+PUT http://localhost:8082/api/vehicles/{{placa}}
+Content-Type: application/json
+
+{
+  "placa": "ABC1234",
+  "modelo": "Ford Fusion 2.5",
+  "anoModelo": 2014,
+  "anoFabricacao": 2013,
+  "quilometragem": 164000
+}
+
+###

@@ -1,0 +1,5 @@
+### GATEWAY | GET request to return vehicle by placa
+@placa = ABC1234
+GET http://localhost:8082/api/vehicles/{{placa}}
+
+###

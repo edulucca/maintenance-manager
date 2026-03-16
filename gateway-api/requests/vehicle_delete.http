@@ -1,0 +1,5 @@
+### GATEWAY | DELETE request to delete vehicle
+@placa =ABC1234
+DELETE http://localhost:8082/api/vehicles/{{placa}}
+
+###

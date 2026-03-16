@@ -1,0 +1,4 @@
+### GATEWAY | GET request to return vehicles
+GET http://localhost:8082/api/vehicles
+
+###
