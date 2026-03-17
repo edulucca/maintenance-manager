@@ -6,6 +6,5 @@ Content-Type: application/json
   "cpf": "90789830000",
   "nome": "Jorge João Silva",
   "telefone": "11999999999",
-  "email": "jorge.joao@teste.com",
-  "vehicles": ["ABC1234"]
+  "email": "jorge.joao@teste.com"
 }
