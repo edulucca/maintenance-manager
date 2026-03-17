@@ -1,0 +1,7 @@
+### GET request to example server
+@cpf =90789830000
+@placa =ABC4321
+
+POST http://localhost:8082/api/clients/{{cpf}}/vehicles/{{placa}}
+
+###

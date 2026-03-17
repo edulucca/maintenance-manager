@@ -1,5 +1,3 @@
 .idea
 
-/vehicle-service/target/
-/gateway-api/target/
-/eureka-server/target/
+/*/target/

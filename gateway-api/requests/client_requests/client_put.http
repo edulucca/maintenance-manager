@@ -1,0 +1,14 @@
+### GATEWAY | PUT request to update vehicle
+@cpf = 90789830000
+PUT http://localhost:8082/api/clients/{{cpf}}
+Content-Type: application/json
+
+{
+  "cpf": "90789830000",
+  "nome": "Jorge João Silva",
+  "telefone": "11999999999",
+  "email": "jorge.silva@teste.com",
+  "vehicles": ["ABC1234"]
+}
+
+###

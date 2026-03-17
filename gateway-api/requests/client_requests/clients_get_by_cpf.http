@@ -1,0 +1,5 @@
+### GATEWAY | GET request to return client by cpf
+@cpf = 90789830000
+GET http://localhost:8082/api/clients/{{cpf}}
+
+###

@@ -1,0 +1,4 @@
+### GATEWAY | GET request to return clients
+GET http://localhost:8082/api/clients
+
+###
