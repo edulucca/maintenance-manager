@@ -1,0 +1,21 @@
+# catalog-info.yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: api-historico-veiculos
+  title: Histórico de Veículos API
+  description: Microsserviço responsável por gerenciar o ciclo de vida e histórico dos veículos da frota.
+  tags: [java, spring-boot, microservice]
+  annotations:
+    github.com/project-slug: edulucca/maintenance-manager
+spec:
+  type: service
+  lifecycle: production
+  owner: group:squad-maintenance-core
+  system: maintenance-manager
+  providesApis: 
+    - openapi-historico-veiculos
+  dependsOn:
+    - resource:db-historico-veiculos
+    - resource:cluster-logs-manutencao
+    - resource:kafka-eventos-core
