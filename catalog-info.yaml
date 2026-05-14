@@ -1,21 +1,62 @@
-# catalog-info.yaml
+---
+# ==========================================
+# Componente (O Microsserviço)
+# ==========================================
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: api-historico-veiculos
-  title: Histórico de Veículos API
-  description: Microsserviço responsável por gerenciar o ciclo de vida e histórico dos veículos da frota.
+  title: API de Histórico de Veículos
+  description: Microsserviço responsável pela persistência e consulta do histórico de manutenções.
   tags: [java, spring-boot, microservice]
-  annotations:
-    github.com/project-slug: edulucca/maintenance-manager
 spec:
   type: service
   lifecycle: production
   owner: group:squad-maintenance-core
   system: maintenance-manager
-  providesApis: 
+  providesApis:
     - openapi-historico-veiculos
   dependsOn:
     - resource:db-historico-veiculos
-    - resource:cluster-logs-manutencao
-    - resource:kafka-eventos-core
+
+---
+# ==========================================
+# API (Contrato REST)
+# ==========================================
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: openapi-historico-veiculos
+  title: API de Histórico de Veículos
+  description: Contrato REST para consulta e registro de manutenções em veículos.
+  tags: [rest, openapi, java]
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:squad-maintenance-core
+  system: maintenance-manager
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: Histórico API
+    paths:
+      /veiculos/{id}/historico:
+        get:
+          summary: Retorna o histórico de manutenções
+
+---
+# ==========================================
+# Resource (Banco de Dados Exclusivo)
+# ==========================================
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: db-historico-veiculos
+  title: DB Histórico (PostgreSQL)
+  description: Banco de dados relacional principal para o histórico de revisões.
+  tags: [database, postgresql]
+spec:
+  type: database
+  owner: group:squad-maintenance-core
+  system: maintenance-manager
